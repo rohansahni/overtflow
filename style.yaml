@@ -1156,7 +1156,7 @@ layers:
           size: 26px
           placement_spacing: 150px
           angle: auto
-          flat: true
+          flat: false
     rail:
       filter:
         all:
