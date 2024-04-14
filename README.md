@@ -14,7 +14,18 @@ a junction to report issues such as improperly parked vehicles
 and potholes in real-time, we aim to collaborate with 
 authorities to swiftly resolve these issues and ensure 
 smoother journeys for everyone on the road. </br>
-Tech Stack Used
+
+### Instructions:
+1. Clone the Repo ```git clone <repository_url>
+cd project-directory```
+2. Install Dependencies
+```pip install -r requirements.txt```
+3. Run the code
+   ```python manage.py runserver 0.0.0.0:8000```
+4. The server will run at http://localhost:8000/
+   </br>
+   </br>
+### Tech Stack Used
  1. HereMaps APIs
 > a. Leveraging Geocoding API for precise location services. </br>
 > b. Utilizing Directions API for dynamic route optimization. </br>
@@ -49,17 +60,5 @@ efforts.
 triggers cannot be resolved immediately, drivers are provided with dynamic 
 rerouting suggestions to avoid affected areas.
 
-![image](https://github.com/rohansahni/overtflow/assets/65642059/9b306daa-73f8-4a1d-9f60-a7689d16b184)
 
-
-#### Summary:
-The Proactive Traffic Management System represents a paradigm shift in how we approach traffic management in India. By 
-focusing on pre-congestion events and empowering drivers to report potential triggers in real-time, we aim to collaborate 
-with authorities to ensure smoother journeys for everyone on the road. Our project aims to develop an intelligent system for 
-leveraging modern technologies to detect and manage traffic bottlenecks caused by accidents effectively. By utilizing 
-real-time data and smart algorithms, our system will streamline communication with authorities, provide timely rerouting 
-suggestions to drivers, and ultimately enhance road safety and traffic flow.
- With advanced strategies and seamless integration with existing infrastructure, our solution is poised to make a significant 
-impact on road safety and traffic flow in India. It's a practical solution to the challenges of traffic management. Combining 
-the best elements of crowd-sourced reporting with advanced incident management and traffic simulation, we are confident 
-that our approach will make a real impact on road safety and traffic flow.
+Team Members: Rohan Sahni, Chandan Chakravarty, Hari Subburaman and Suriya Prakash.
