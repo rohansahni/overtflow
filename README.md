@@ -1,6 +1,5 @@
 # OVERTFLOW
-Team Overtflow
-Solution for Karnataka State Police Datathon 2024:
+### Solution for Karnataka State Police Datathon 2024:
 ![image](https://github.com/rohansahni/overtflow/assets/65642059/76dd0e28-c261-473b-b724-2dce215875cb)
 
 Our solution, Overt Flow is a proactive traffic management 
@@ -33,7 +32,7 @@ Tech Stack Used
 
 ![image](https://github.com/rohansahni/overtflow/assets/65642059/13d7c0a4-11ee-4d77-8d4e-877b746181ce)
 
-
+### Why our approach is unique?
 1. Proactive Incident Reporting: Drivers are empowered via incentive points 
 (like in CRED app) to report issues such as improperly parked vehicles and 
 potholes in real-time via our intuitive app interface.
