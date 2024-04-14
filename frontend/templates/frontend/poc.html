@@ -1,0 +1,19 @@
+{% extends "frontend/index.html" %} {% block content %}
+
+<ul id="json-list"></ul>
+<script>
+    
+    const listContainer = document.getElementById("json-list");
+    fetch('https://raw.githubusercontent.com/rohansahni/overtflow/main/ps.json')
+  .then((response) => response.json())
+  .then((json) => {json['KARNATAKA TRAFFIC POLICE STATIONS'].forEach((location) => {
+      const address = location['TRAFFIC PS NAME']+' Police Station Bangalore' // Adjust this based on your data structure
+      const listItem = document.createElement("li");
+        listItem.textContent = `${address}`;
+        listContainer.appendChild(listItem);
+    })
+  })
+
+  
+</script>
+{% endblock %}

@@ -1,0 +1,27 @@
+<!-- records.html -->
+
+{% extends "frontend/index.html" %}
+
+{% block content %}
+    <h1>Event Records</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Latitude</th>
+                <th>Longitude</th>
+                <!-- Add other table headers as needed -->
+            </tr>
+        </thead>
+        <tbody>
+            {% for event in events %}
+                <tr>
+                    <td>{{ event.id }}</td>
+                    <td>{{ event.latitude }}</td>
+                    <td>{{ event.longitude }}</td>
+                    <!-- Add other event data columns as needed -->
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
