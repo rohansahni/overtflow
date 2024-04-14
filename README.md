@@ -16,8 +16,8 @@ authorities to swiftly resolve these issues and ensure
 smoother journeys for everyone on the road. </br>
 
 ### Instructions:
-1. Clone the Repo ```git clone <repository_url>
-cd project-directory```
+1. Clone the Repo ```git clone https://github.com/rohansahni/overtflow.git
+cd overtflow```
 2. Install Dependencies
 ```pip install -r requirements.txt```
 3. Run the code
@@ -60,5 +60,5 @@ efforts.
 triggers cannot be resolved immediately, drivers are provided with dynamic 
 rerouting suggestions to avoid affected areas.
 
-
+-------------------------------------------------------------
 Team Members: Rohan Sahni, Chandan Chakravarty, Hari Subburaman and Suriya Prakash.
