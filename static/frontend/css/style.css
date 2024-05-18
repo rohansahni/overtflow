@@ -225,7 +225,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  z-index: 1000;
+  z-index: 2000;
   background-color: #fefefe;
   transition: 0.3s ease-in-out;
 }
@@ -246,6 +246,36 @@ body {
   height: 8px;
   color: #fefefe;
 }
+
+.myModal-header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 0.3rem 0 0.3rem;
+}
+.modal-user{
+  display: flex;
+  flex-direction: column;
+  
+}
+.modal-user-link{
+  padding: 0.5rem 0 0.5rem 0;
+  text-align: center;
+  background-color: #2ca099;
+  margin: 0.2rem 0 0.2rem 0;
+}
+.modal-user-link a{
+ color: #e4dfdf;
+ text-decoration: none;
+}
+
+.login-header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0rem 0.3rem 0rem 0.3rem;
+}
+
 
 /* @media all and (min-width: 768px) and (max-width: 1024px) {
   .context{
@@ -399,12 +429,37 @@ body {
 #getLoc {
   position: absolute;
   bottom: 30%;
-  right: 1.5%;
+  right: 1.7%;
   display: flex;
   flex-direction: column;
   background-color: #fefefe;
   padding: 10px;
 }
+
+@media (max-width: 400px) {
+  #getLoc {
+    bottom: 50%;
+    right: 7%;
+  }
+}
+
+
+#rotationButton {
+  position: absolute;
+  bottom: 25%;
+  right: 1.7%;
+  display: flex;
+  flex-direction: column;
+  background-color: #fefefe;
+  padding: 10px;
+}
+@media (max-width: 400px) {
+  #rotationButton {   
+    bottom: 38%;
+    right: 7%;
+  }
+}
+
 
 .get-location {
   position: absolute;
@@ -456,6 +511,39 @@ body {
   font-weight: 400;
   padding: 5px 0px;
 }
+.report-header{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+}
+.report-header h4{
+ color: #2ca099;
+ font-weight: 500;
+}
+.report-header p{
+  margin: unset !important;
+}
+.report-header .btn{
+padding: 0.5rem;
+border: 1px solid #fefefe;
+background-color: #2ca099;
+color: #fefefe;
+transition: 0.3s ease-in-out;
+margin-top: 0.5rem;
+}
+.report-header .btn:hover{
+  transform: scale(0.8);
+  background-color: #2ca099;
+  color: #fefefe;
+}
+.H_ib_content{
+  padding: 0.5rem ;
+  height: auto;
+  margin: unset !important;
+}
+
 .enter-location {
   position: absolute;
   top: 1%;
@@ -724,7 +812,7 @@ html */
     <style> */
         .modal{
             display: none;
-            position: fixed;
+            position: relative;
             z-index: 1;
             left: 0;
             top: 0;
@@ -747,40 +835,111 @@ html */
             background-color: rgba(0, 0, 0, 0.4);
             animation: fadein 0.5s;
         }
-
+        
         .modal-content{
             background-color: #fefefe;
-            margin: 15% auto;
             padding: 20px;
-            border: 1px solid #888;
-            width: 20% !important;
+            max-width: 25rem !important;
             animation: slidein 0.5s;
-            position: relative;
-        }
-
-        .login-modal-content {
-            background-color: #fefefe;
-            margin: 15% auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 40% !important;
-            animation: slidein 0.5s;
-            position: relative;
-        }
-
-        .close {
             position: absolute;
-            top: 5px;
-            right: 10px;
-            font-size: 20px;
-            font-weight: bold;
-            color: #888;
-            cursor: pointer;
+            box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+            height: auto;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
         }
-
+        .modal-content-head{
+          display:flex;
+          justify-content: space-between;
+          align-items: center;
+          margin: 0.5rem;
+        }
+        .modal-content-head h2{
+         color: #2ca099;
+         font-weight: 500;
+        }
+        .close {
+          cursor: pointer;
+        }
+        .close i{
+         font-weight: 500;
+        }
         .close:hover {
-            color: #000;
+          color: red;
         }
+      .login-modal-content {
+        background-color: #fefefe;
+        padding: 20px;
+        box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+        max-width: 25rem;
+        animation: slidein 1s forwards;
+        position: relative;
+        top: 50%;
+        left: 25%;
+        transform: translate(-50%,-50%);
+
+      }
+      .login-modal-header{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .login-modal-header h2{
+       color: #2ca099;
+       font-weight: 500;
+      }
+      .loginas{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .loginas div{
+        padding: 0.5rem 0rem 0.5rem 0rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #2ca099;
+        width:100%;
+        margin: 0.5rem;
+      }
+      .loginas div a{
+        text-decoration: none;
+        color: #fefefe;
+      }
+      #loginForm{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      #loginForm .input-field, #loginForm .submit-field{
+        margin: 0.5rem 0 0.5rem 0rem;
+        width: 100%;
+      }
+      #loginForm .input-field label, #loginForm .submit-field label{
+        font-size:0.8rem;
+        color: #949391;
+        font-weight: 400;
+      }
+      #loginForm .input-field input{
+        font-size: 1.2rem;
+        font-weight: 400;
+      }
+      #loginForm .input-field input, #loginForm .submit-field button{
+        padding: 0.5rem;
+        width: 100%;
+        box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+        border:unset;
+      }
+      #loginForm .submit-field button{
+        background-color: #2ca099;
+        color: #fefefe;
+        border: unset;
+      }
+
+
+      
+
+      
 
         @keyframes fadein {
             from {opacity: 0;}
@@ -788,8 +947,12 @@ html */
         }
 
         @keyframes slidein {
-            from {margin-top: 0;}
-            to {margin-top: 15%;}
+          from {
+            margin-left: -100%; /* Start from outside the left side of the window */
+          }
+          to {
+              margin-left: 25%; /* Slide to the center of the window */
+          }
         }
 
 
@@ -802,3 +965,105 @@ html */
             color: #FF5733; /* Red color */
             font-weight: bold;
         }
+
+
+        .autocomplete-container {
+          /* the container must be positioned relative: */
+          position: absolute;
+          z-index: 1000;
+          margin-bottom: 20px;
+          width: 100%;
+          top: 2%;
+          height: 5rem;
+        }
+        
+        .autocomplete-container input {
+          width: 100%; 
+          max-width: 45rem; 
+          box-sizing: border-box;
+          outline: none;
+          position: absolute;
+          left: 50%;
+          transform: translateX(-50%);
+          border: 1px solid rgba(0, 0, 0, 0.2);
+          border-radius: 10px;
+          padding: 10px;
+          padding-right: 31px;
+          font-size: 16px;
+        }
+      
+      .clear-button svg {
+        position: absolute;
+        top: 1.5rem;
+        right: 34rem;
+        transform: translateY(-50%);
+        cursor: pointer;
+      }
+      @media (max-width: 400px) {
+        .clear-button svg {
+          right: 1rem;
+        }
+      }
+.autocomplete-items {
+  position: absolute;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 2px 10px 2px rgba(0, 0, 0, 0.1);
+  border-top: none;
+  z-index: 99;
+  top: 3rem; /* Adjust based on the height of your input and margin */
+  left: 50%; /* Move the left edge to the center */
+  transform: translateX(-50%); /* Shift back by half its width */
+  width: 100%; /* Ensure it takes full width within the constraints */
+  max-width: 45rem; /* Limit the maximum width */
+  background-color: #fff;
+  box-sizing: border-box; /* Include padding and border in the element's total width */
+}
+
+
+.autocomplete-items div {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.autocomplete-items div:hover {
+  /*when hovering an item:*/
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.autocomplete-items .autocomplete-active {
+  /*when navigating through the items using the arrow keys:*/
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+
+.clear-button {
+  color: rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+  
+  position: absolute;
+  right: 5px;
+  top: 0;
+
+  height: 100%;
+  display: none;
+  align-items: center;
+}
+
+.clear-button.visible {
+  display: flex;
+}
+
+
+.clear-button:hover {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+
+/* not working */
+/* Change the color of zoom buttons */
+.H_ib_zoomInIcon, .H_ib_zoomOutIcon {
+  border-radius: 50%;
+}
+.H_ib_scaleBar {
+  background-color: green;
+}
