@@ -1,5 +1,90 @@
-{% extends "frontend/index.html" %} {% block content %}
+{% extends "frontend/index.html" %} {% load static %} {% block content %}
 
+<style>
+
+
+  /* Common styles for all screen sizes */
+#dashhead {
+    justify-content: center;
+    align-items: center;
+    font-size: 3rem;
+    text-align: center;
+    color: #007bff;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+#dashmap {
+    width: 95%;
+    height: 200px;
+    background: grey;
+}
+
+#dashboard {
+    max-width: 90%;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    height: 100%;
+    overflow-y: scroll;
+}
+
+.chart-container {
+    width: 45%;
+    min-width: 90%;
+    height: 60%;
+    margin: 10px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    float: left;
+}
+
+canvas {
+    width: 90%;
+    max-height: 300px;
+    margin-top: 20px;
+}
+
+h2 {
+    font-size: 24px;
+    color: #333;
+    margin-top: 0;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+ul li {
+    margin-bottom: 10px;
+}
+
+ul li:before {
+    content: '\2022';
+    color: #007bff;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
+}
+
+/* Responsive adjustments for smaller screens (e.g., mobile devices) */
+@media (max-width: 768px) {
+    #dashhead {
+        font-size: 2rem;
+    }
+
+    .chart-container {
+        width: 100%;
+        float: none;
+    }
+}
+
+</style>
+<!-- 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
 
 <h1>Event Graph (This Month)</h1>
@@ -49,5 +134,145 @@
       },
     },
   })
+</script> -->
+<div id="dashhead"><h3>Welcome to Overtflow</h3></div>
+
+<div id="dashboard">
+  <div class="chart-container">
+    <canvas id="barChart"></canvas>
+  </div>
+  <div class="chart-container">
+    <canvas id="pieChart"></canvas>
+  </div>
+  <div class="chart-container">
+    <h4>Incident Map</h4>
+    <div id="dashmap"></div>
+  </div>
+  <div class="chart-container">
+    <h4>Number of Incidents by Month</h4>
+    <canvas id="myChart" width="400" height="200"></canvas>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+        document.addEventListener("DOMContentLoaded", function() {
+      var ctxBar = document.getElementById('barChart').getContext('2d');
+      var ctxPie = document.getElementById('pieChart').getContext('2d');
+
+      var barChart = new Chart(ctxBar, {
+          type: 'bar',
+          data: {
+              labels: Object.keys({{ event_counts|safe }}),
+              datasets: [{
+                  label: 'Event Count',
+                  data: Object.values({{ event_counts|safe }}),
+                  backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                  borderColor: 'rgba(54, 162, 235, 1)',
+                  borderWidth: 1
+              }]
+          },
+          options: {
+              scales: {
+                  y: {
+                      beginAtZero: true
+                  }
+              }
+          }
+      });
+
+      var pieChart = new Chart(ctxPie, {
+          type: 'pie',
+          data: {
+              labels: Object.keys({{ event_counts|safe }}),
+              datasets: [{
+                  label: 'Event Count',
+                  data: Object.values({{ event_counts|safe }}),
+                  backgroundColor: ['rgba(255, 99, 132, 0.7)', 'rgba(54, 162, 235, 0.7)', 'rgba(255, 206, 86, 0.7)', 'rgba(75, 192, 192, 0.7)'],
+              }]
+          },
+          options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              aspectRatio: 1
+          }
+      });
+  });
+
+
+
+  /**
+   * Boilerplate map initialization code starts below:
+   */
+
+  //Step 1: initialize communication with the platform
+  // In your own code, replace variable window.apikey with your own apikey
+
+  var platform = new H.service.Platform({
+    apikey: '5TmGc1GycaW4Cxahz1tgnj8wKR2I0MvPFGbhEZMu-rU'
+  });
+  var defaultLayers = platform.createDefaultLayers();
+  //Step 2: initialize a map - this map is centered over Europe
+  var dashmap = new H.Map(
+    document.getElementById('dashmap'),
+    defaultLayers.vector.normal.map,
+    {
+      center: { lat: 12.985567999999999, lng: 77.605683 },
+      zoom: 10,
+      pixelRatio: window.devicePixelRatio || 1,
+    }
+  )
+  // add a resize listener to make sure that the map occupies the whole container
+  window.addEventListener('resize', () => dashmap.getViewPort().resize())
+
+  //Step 3: make the map interactive
+  // MapEvents enables the event system
+  // Behavior implements default interactions for pan/zoom (also on mobile touch environments)
+  var behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(dashmap))
+
+  // Create the default UI components
+  var ui = H.ui.UI.createDefault(dashmap, defaultLayers)
+
+  // Now use the map as required...
+  window.onload = function () {
+    const incidents = [];
+    {% for i in dashlocations %} // Pass the locations from Django context
+      
+      dashmap.addObject(new H.map.Marker(new H.geo.Point({{i.0}}, {{i.1}})));
+    {% endfor %}
+    
+         
+  }
+
+
+
+  
+</script>
+<script>
+  var ctx = document.getElementById('myChart').getContext('2d');
+        var chartDataString = '{{ chart_data|safe }}'; // Assuming chart_data is a valid JSON string
+        var chartData = JSON.parse(chartDataString);
+        // console.log("chartData:",chartData)
+        // var chart_data = {
+        //   labels: ['March', 'April', 'May'],
+        //   datasets: [{
+        //     data: [10, 20, 15],
+        //     label: 'Sample Incidents'
+        //   }]
+        // };
+   
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: chartData,
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
 </script>
 {% endblock %}
