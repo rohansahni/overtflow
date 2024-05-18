@@ -28,24 +28,56 @@ function getNearestPSwithAPI(myloc) {
             longitudeForm.value = myloc.lng;
             placeNameForm.value = locationData.address.label
 
+            // remove prev live markers
+            const allObjects = group.getObjects()
+            const markers = allObjects.filter(
+              (obj) => obj instanceof H.map.Marker
+            )
+            
+            markers.forEach((marker) => {
+              console.log('MARKER:', marker.icon, "Wanted:",liveIcon)
+              if (marker.icon === liveIcon) {
+                group.removeObject(marker)
+                
+                
+                // Listen for dragend event
+                marker.addEventListener('dragend', (ev) => {
+                  var myloc = {
+                    lat: marker.getGeometry().lat,
+                    lng: marker.getGeometry().lng,
+                  }
+                  getNearestPSwithAPI(myloc);
 
+                  // Re-enable map behavior
+                  // behavior.enable();
+
+                  // Call your getNearestPSwithAPI function here
+                  // getNearestPSwithAPI(marker.getGeometry().lat, marker.getGeometry().lng);
+                })
+                
+              }
+            })
             // Use the locationData in your other function
+            
+
             addMarkerToGroup(
               group,
               myloc,
-              `<div style="width: 400px; height: 200px; display: flex;">
-              <div style="margin: 5px;">
+              `<div style="width: 400px; display: flex; height:auto">
+              <div style="margin: 5px;"  class='report-header'>
                   <div>
-                      <h6>Your Location:</h6>
+                      <h4>Your Location:</h4>
                       <p>${locationData.address.label}</p>
                   </div>
-                  <br />
-                      <div>
-                          <h6>Nearest PS:</h6>
-                          <p>${nearestPS.address.label} at: ${nearestPS.distance} meters away</p>
-                      </div>
+                  <div>
+                    <h4>Nearest PS:</h4>
+                    <p>${nearestPS.address.label} at: ${nearestPS.distance} meters away</p>
                   </div>
-                  <a onclick="reportWindow.style.display = 'block';" href="#" class="btn btn-primary text-center" style="justify-content: center; text-align: center;">Report an incident here</a>
+                  <div>
+                  <a onclick="reportWindow.style.display = 'block';" href="#" class="btn">Report an incident here</a>
+                  </div>
+              </div>
+                 
               </div>`,
               true,
               liveIcon
