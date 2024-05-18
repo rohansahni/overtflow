@@ -183,24 +183,21 @@ function addMarkerToGroup(group, coordinate, html, drag, icon) {
   // add custom data to the marker
   marker.setData(html)
   marker.draggable = drag
-  if (drag === true) {
-        // Listen for dragend event
-        marker.addEventListener('dragend', (ev) => {
-          var myloc = {
-            lat: marker.getGeometry().lat,
-            lng: marker.getGeometry().lng,
-          }
-          
-        
-            // Re-enable map behavior
-        // behavior.enable();
-
-        // Call your getNearestPSwithAPI function here
-        // getNearestPSwithAPI(marker.getGeometry().lat, marker.getGeometry().lng);
-    });
-  }
+  
   group.addObject(marker)
+
+  marker.addEventListener('dragend', function (event) {
+    const newPosition = event.target.getGeometry() // Get the new position
+    const newLat = newPosition.lat
+    const newLng = newPosition.lng
+
+    // Call your function with the new location
+    getNearestPSwithAPI({ lat: newLat, lng: newLng })
+  })
 }
+
+
+
 
 function interleave(map) {
   var provider = map.getBaseLayer().getProvider()
@@ -453,7 +450,7 @@ var map = new H.Map(
 
 map.addLayer(defaultLayers.vector.normal.traffic)
 map.addLayer(defaultLayers.vector.normal.trafficincidents)
-map.getViewModel().setLookAtData({ tilt: 55 })
+map.getViewModel().setLookAtData({ tilt: 55, heading: 45 })
 window.addEventListener('resize', () => map.getViewPort().resize())
 // var behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(map))
 // Create the default UI components
@@ -506,10 +503,24 @@ window.addEventListener('resize', () => map.getViewPort().resize())
 
 //Step 3: make the map interactive
 // MapEvents enables the event system
+// function moveUiComponents(map, defaultLayers) {
+//   // Create the default UI components
+//   var ui = H.ui.UI.createDefault(map, defaultLayers)
+
+//   // Obtain references to the standard controls.
+//   // var mapSettings = ui.getControl('mapsettings')
+//   var zoom = ui.getControl('zoom')
+//   var scalebar = ui.getControl('scalebar')
+
+//   // Move the controls to the top-left of the map.
+//   mapSettings.setAlignment('top-left')
+//   zoom.setAlignment('top-left')
+  
+// }
 // Behavior implements default interactions for pan/zoom (also on mobile touch environments)
 var behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(map))
-
-
+var scalebar = ui.getControl('scalebar')
+scalebar.setAlignment('bottom-center')
 // setStyle(map);
 // ui.removeControl('mapsettings')
 // var ms = new H.ui.MapSettingsControl({
@@ -612,3 +623,5 @@ function findNearestPStoMe(coords) {
 //On Submit
 // </br><p>${findNearestPStoMe(myloc)}</p>
 // )
+
+
