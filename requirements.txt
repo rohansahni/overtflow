@@ -1,6 +1,7 @@
 opencv-python-headless
 ultralytics
 onnxruntime
+gunicorn
 json5
 numpy
 opencv-python
