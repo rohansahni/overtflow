@@ -1,8 +1,9 @@
-opencv-python
+opencv-python-headless
 ultralytics
 onnxruntime
 json5
 numpy
+opencv-python
 collection
 Django
 djangorestframework
