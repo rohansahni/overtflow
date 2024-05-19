@@ -1,9 +1,9 @@
-opencv-python==4.8.0.76
-ultralytics==8.1.28
-onnxruntime==1.13.1
-json5==0.9.14
-numpy==1.21.5
-collection==0.1.6
-Django==4.2.5
-djangorestframework==3.14.0
+opencv-python
+ultralytics
+onnxruntime
+json5
+numpy
+collection
+Django
+djangorestframework
 django-cors-headers
