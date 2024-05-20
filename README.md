@@ -20,9 +20,10 @@ smoother journeys for everyone on the road. </br>
 cd overtflow```
 2. Install Dependencies
 ```pip install -r requirements.txt```
-3. Run the code
+ > for linux uusers remember to run sudo apt-get update && sudo apt-get install ffmpeg libsm6 libxext6 -y
+4. Run the code
    ```python manage.py runserver 0.0.0.0:8000```
-4. The server will run at http://localhost:8000/
+5. The server will run at http://localhost:8000/
    </br>
    </br>
 ### Tech Stack Used
