@@ -1,5 +1,5 @@
 # OVERTFLOW
-### Solution for Karnataka State Police Datathon 2024:
+### Solution for Karnataka State Police Datathon 2024
 ![image](https://github.com/rohansahni/overtflow/assets/65642059/76dd0e28-c261-473b-b724-2dce215875cb)
 
 Our solution, Overt Flow is a proactive traffic management 
@@ -12,7 +12,8 @@ they escalate into major traffic jams.
 By empowering drivers who are in the vicinity of 100 meters of 
 a junction to report issues such as improperly parked vehicles 
 and potholes in real-time, we aim to collaborate with 
-authorities to swiftly resolve these issues and ensure 
+authorities to swiftly resolve these issues and ensure ![msedge_n9R83a2bTr](https://github.com/rohansahni/overtflow/assets/65642059/a04635e5-ae81-4f3b-8cb3-8334780d957d)
+
 smoother journeys for everyone on the road. </br>
 
 ### Instructions:
@@ -20,7 +21,7 @@ smoother journeys for everyone on the road. </br>
 cd overtflow```
 2. Install Dependencies
 ```pip install -r requirements.txt```
- > for linux uusers remember to run sudo apt-get update && sudo apt-get install ffmpeg libsm6 libxext6 -y
+ > for linux users remember to run sudo apt-get update && sudo apt-get install ffmpeg libsm6 libxext6 -y
 4. Run the code
    ```python manage.py runserver 0.0.0.0:8000```
 5. The server will run at http://localhost:8000/
