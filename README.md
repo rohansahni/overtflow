@@ -1,6 +1,7 @@
 # OVERTFLOW
 ### Solution for Karnataka State Police Datathon 2024
-![image](https://github.com/rohansahni/overtflow/assets/65642059/76dd0e28-c261-473b-b724-2dce215875cb)
+
+| <img src="https://github.com/rohansahni/overtflow/assets/65642059/76dd0e28-c261-473b-b724-2dce215875cb" alt="image" width="700px" /> | <img src="https://github.com/rohansahni/overtflow/assets/65642059/a04635e5-ae81-4f3b-8cb3-8334780d957d" alt="image" width="200px" /> |
 
 Our solution, Overt Flow is a proactive traffic management 
 system, set to revolutionize the way we approach traffic 
@@ -12,7 +13,7 @@ they escalate into major traffic jams.
 By empowering drivers who are in the vicinity of 100 meters of 
 a junction to report issues such as improperly parked vehicles 
 and potholes in real-time, we aim to collaborate with 
-authorities to swiftly resolve these issues and ensure ![msedge_n9R83a2bTr](https://github.com/rohansahni/overtflow/assets/65642059/a04635e5-ae81-4f3b-8cb3-8334780d957d)
+authorities to swiftly resolve these issues and ensure 
 
 smoother journeys for everyone on the road. </br>
 
